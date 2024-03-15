@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './style.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter />
     </div>
   );
 }
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+  const [step, setStep] = useState(1);
+
+  const incrementCount = () => {
+    setCount((c) => {
+      c += step;
+      return c;
+    });
+  };
+
+  const decrementCount =() => {
+    setCount((c) => {
+      c -= step;
+      return c;
+    });
+  };
+
+  const incrementStep = () => {
+    setStep((s) => s + 1);
+  };
+
+  const decrementStep = () => {
+    setStep((s) => s - 1);
+  };
+
+  return (
+    <div>
+      <button onClick={decrementStep}>-</button> <span>Step:{step}</span>{' '}
+      <button onClick={incrementStep}>+</button>
+      <br />
+      <button onClick={decrementCount}>-</button>
+      <span>Count: {count}</span> <button onClick={incrementCount}>+</button>
+    </div>
+  );
+};
 
 export default App;
